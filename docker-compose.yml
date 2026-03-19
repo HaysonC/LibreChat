@@ -3,6 +3,8 @@
 
 services:
   api:
+    env_file:
+      - .env
     container_name: LibreChat
     ports:
       - "${PORT}:${PORT}"
@@ -22,8 +24,8 @@ services:
       - RAG_API_URL=http://rag_api:${RAG_PORT:-8000}
     volumes:
       - type: bind
-        source: ./.env
-        target: /app/.env
+        source: ./librechat.yaml
+        target: /app/librechat.yaml
       - ./images:/app/client/public/images
       - ./uploads:/app/uploads
       - ./logs:/app/logs
@@ -70,3 +72,4 @@ services:
 
 volumes:
   pgdata2:
+
